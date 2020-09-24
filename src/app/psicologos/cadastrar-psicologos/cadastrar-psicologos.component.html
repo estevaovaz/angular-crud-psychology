@@ -1,0 +1,74 @@
+<div class="well" style="margin-top: 10px;">
+    <form #formPsicologo="ngForm">
+        <div class="form-group">
+            <!--NOME-->
+            <label for="nome">Nome do Psicólogo:</label>
+            <input type="text" class="form-control col-4" id="nome" name="nome" [(ngModel)]="psicologo.nome"
+                #nome="ngModel" minlength="5"  maxlength="20" required>
+            <!--validando nome do psicologo-->
+            <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger">
+                <div [hidden]="!nome.errors.required">
+                    Digite o nome do psicólogo.
+                </div>
+                <div [hidden]="!nome.errors.minlength">
+                    O Nome do Psicólogo deve conter ao menos 5 caracteres.
+                </div>
+            </div>
+            <!--CRP-->
+            <label for="crp">CRP:</label>
+            <input type="text" class="form-control col-md-4" id="crp" name="crp" [(ngModel)]="psicologo.crp"
+                #crp="ngModel" minlength="7" maxlength="10" required>
+            <!--validando crp do psicologo-->
+            <div *ngIf="crp.errors && (crp.dirty || crp.touched)" class="alert alert-danger">
+                <div [hidden]="!crp.errors.required">
+                    Digite o crp do psicólogo.
+                </div>
+                <div [hidden]="!crp.errors.minlength">
+                    O CRP do Psicólogo deve conter o seguinte formato 99-99999 (ao menos 8 caracteres).
+                </div>
+            </div>
+            <!--Abordagem-->
+            <label for="abordagem">Abordagem:</label>
+            <input type="text" class="form-control col-md-4" id="abordagem" name="abordagem"
+                [(ngModel)]="psicologo.abordagem" #abordagem="ngModel" minlength="3" required>
+            <!--validando abordagem do psicologo-->
+            <div *ngIf="abordagem.errors && (abordagem.dirty || abordagem.touched)" class="alert alert-danger">
+                <div [hidden]="!abordagem.errors.required">
+                    Digite a abordagem do psicólogo.
+                </div>
+                <div [hidden]="!abordagem.errors.minlength">
+                    A Abordagem do Psicólogo deve conter ao menos 3 caracteres.
+                </div>
+            </div>
+            <!--Sexo-->
+            <label for="sexo">Sexo:</label>
+            <input type="text" class="form-control col-md-4" id="sexo" name="sexo" [(ngModel)]="psicologo.sexo"
+                #sexo="ngModel" minlength="8" required>
+            <!--validando sexo do psicologo-->
+            <div *ngIf="sexo.errors && (sexo.dirty || sexo.touched)" class="alert alert-danger">
+                <div [hidden]="!sexo.errors.required">
+                    Digite o sexo do psicólogo.
+                </div>
+                <div [hidden]="!sexo.errors.minlength">
+                    O Sexo do Psicólogo deve conter ao menos 8 caracteres.
+                </div>
+            </div>
+            <!--Status-->
+            <div class="form-check" style="margin-top: 4px;">
+                <input type="checkbox" class="form-check-input" id="status" name="status" 
+                [(ngModel)] = "psicologo.status" #status="ngModel">
+                <label for="status" class="form-check-label">Ativo</label>
+            </div>
+
+        </div>
+
+        <!--BOTAO CADASTRAR E VOLTAR-->
+        <div class="form-group text-center col-4">
+            <input type="submit" class="btn btn-success " (click)="cadastrar()" value="Cadastrar" [disabled]="!formPsicologo.form.valid">
+
+            <a [routerLink]="['/psicologos']" class="btn btn-warning" style="margin-left: 5px;">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar
+            </a>
+        </div>
+    </form>
+</div>
