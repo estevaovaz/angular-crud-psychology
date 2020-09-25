@@ -17,7 +17,7 @@
   </th>
   </tr>
 
-  <tr *ngFor="let psicologo of psicologos">
+  <tr *ngFor="let psicologo of psicologos" >
     <td [class.success]="!psicologo.status">
       {{ psicologo.nome }}
     </td>
@@ -34,7 +34,8 @@
       <input 
         type="checkbox"
         [value]="psicologo.id"
-        [checked]="psicologo.status"      
+        [checked]="psicologo.status"
+        (click)="Status(psicologo)"      
         />
     </td>
     <td class="text-center" style="width: 200px">

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Psicologo } from '../shared/psicologo.model';
 import { PsicologoService } from '../shared/psicologo.service';
 
@@ -28,6 +27,21 @@ export class ListarPsicologosComponent implements OnInit {
     $event.preventDefault();
     if (confirm('Deseja excluir o psicólogo "' + psicologo.nome + '"?')) {
       this.psicologoService.remover(psicologo.id);
+      this.psicologos = this.listarPsis();
+    }
+  }
+
+
+  Status(psicologo: Psicologo): void { 
+    if(psicologo.status === true){
+      if(confirm('Deseja desativar o psicólogo "' + psicologo.nome + '"?')){
+        this.psicologoService.alterarStatus(psicologo.id);
+        this.psicologos = this.listarPsis();
+      }
+    }
+    else{
+      confirm('Deseja ativar o psicólogo "' + psicologo.nome + '"?')
+      this.psicologoService.alterarStatus(psicologo.id);
       this.psicologos = this.listarPsis();
     }
   }
